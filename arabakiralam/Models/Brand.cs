@@ -1,7 +1,10 @@
-﻿namespace arabakiralam.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace arabakiralam.Models
 {
     public class Brand
     {
+        [Key]
         public int BrandId { get; set; }
         public string Name { get; set; } = null!;
 

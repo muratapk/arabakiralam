@@ -1,7 +1,10 @@
-﻿namespace arabakiralam.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace arabakiralam.Models
 {
     public class Car
     {
+        [Key]
         public int CarId { get; set; }
 
         public string PlateNumber { get; set; } = null!;

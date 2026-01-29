@@ -1,7 +1,10 @@
-﻿namespace arabakiralam.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace arabakiralam.Models
 {
     public class Rental
     {
+        [Key]
         public int RentalId { get; set; }
 
         public int CarId { get; set; }
