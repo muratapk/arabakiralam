@@ -63,6 +63,10 @@ namespace arabakiralam.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(car.IsAvailable!=null)
+                {
+                    car.IsAvailable = false;
+                }
                 _context.Add(car);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

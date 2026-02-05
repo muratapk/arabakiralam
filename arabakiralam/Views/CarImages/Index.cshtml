@@ -1,0 +1,48 @@
+﻿@model IEnumerable<arabakiralam.Models.CarImages>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarImagesName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarImagesUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarImagesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarImagesUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.CarId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CarImagesId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CarImagesId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CarImagesId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
