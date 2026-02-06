@@ -1,4 +1,5 @@
 using arabakiralam.Data;
+using arabakiralam.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,34 @@ builder.Services.AddDbContext<RentCarDb>(
 
     }
     );
+//identity ayarlarýmý yazýyorum
+builder.Services.AddIdentity<AppUser,AppRole>(
+    options =>
+    {
+        //sifre ile ilgi ayarlarý tanýmlýyoruz.
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequiredLength = 6;
+        options.User.RequireUniqueEmail= true;
+        //Lockout setting
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+        options.Lockout.MaxFailedAccessAttempts = 5;
+        //kullanýcý bilgilerini tanýmlama
+        options.SignIn.RequireConfirmedEmail = false;
+        options.SignIn.RequireConfirmedPhoneNumber = false;
+    }
+    
+    ).AddEntityFrameworkStores<RentCarDb>();
+//sesion ayarlarýmý
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,7 +55,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
