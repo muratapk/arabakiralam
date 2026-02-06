@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using arabakiralam.Data;
 using arabakiralam.Models;
+using arabakiralam.Services;
 
 namespace arabakiralam.Controllers
 {
@@ -57,35 +58,30 @@ namespace arabakiralam.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CarImagesId,CarImagesName,CarImagesUrl,CarId")] CarImages carImages,IFormFile ImageFile)
+        public async Task<IActionResult> Create([Bind("CarImagesId,CarImagesName,CarImagesUrl,CarId")] CarImages carImages,List<IFormFile> ImageFile)
         {
-            long maxFilesize = 5 * 1024 * 1024;
-            string[] AllowTypesExtension = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
-            if(ImageFile!=null && ImageFile.Length>0)
-            {
-                if(ImageFile.Length>maxFilesize)
-                {
-                    ModelState.AddModelError("ImageFile", "Belirtilen dosya 5Mb'dan Büyük Olmaz");
-                    return View();
-                }
-                if(!AllowTypesExtension.Contains(Path.GetExtension(ImageFile.FileName).ToLower()))
-                {
-                    ModelState.AddModelError("ImageFile", "Dosya Tipi Jpg png gif jpeg olmalıdır");
-                    return View();
-                }
-                var newName=Guid.NewGuid().ToString()+Path.GetExtension(ImageFile.FileName).ToLower();
-                var filepath = Path.Combine("wwwroot/Images", newName);
-                using(var stream=new FileStream(filepath,FileMode.Create))
-                {
-                   await ImageFile.CopyToAsync(stream);
-                }
-                carImages.CarImagesUrl = "/Images/"+newName;
 
+            //FileService dosya = new FileService();
+            //string yol = dosya.UploadingFile(ImageFile);
+            //carImages.CarImagesUrl = yol;
+            foreach (var image in ImageFile)
+            {
+                var filename=Guid.NewGuid().ToString()+Path.GetExtension(image.FileName);
+                var filepath = Path.Combine("wwwroot/Images/", filename);
+                using (var stream = new FileStream(filepath, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                }
+                CarImages araba=new CarImages();
+                araba.CarId = carImages.CarId;
+                araba.CarImagesName = carImages.CarImagesName;
+                araba.CarImagesUrl = "/Images/" + filename;
+                _context.CarImages.Add(araba);
             }
 
             if (ModelState.IsValid)
             {
-                _context.Add(carImages);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

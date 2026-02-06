@@ -1,9 +1,11 @@
 ﻿using arabakiralam.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 
 namespace arabakiralam.Data
 {
-    public class RentCarDb : DbContext
+    public class RentCarDb : IdentityDbContext<AppUser,AppRole,string>
     {
         public RentCarDb(DbContextOptions<RentCarDb> options) : base(options)
         {
