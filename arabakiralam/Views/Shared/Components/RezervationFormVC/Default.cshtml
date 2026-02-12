@@ -1,0 +1,47 @@
+﻿<div id="contact" class="bestCar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-6 offset-md-6">
+                        <form class="main_form">
+                            <div class="titlepage">
+                                <h2>Kiralık Araç Bulma Formu</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <select asp-items="@ViewBag.CarCategory">
+                                        <option value="0">Choose car Make</option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <select asp-items="@ViewBag.Brand">
+                                        <option value="0">Choose Car Type </option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="contactus" placeholder="Search" type="Search" name="Search">
+                                </div>
+                                <div class="col-md-12">
+                                    <select asp-items="@ViewBag.Car">
+                                        <option value="0">Price of Rent</option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="col-sm-12">
+                                    <button type="submit" class="find_btn">Bul Şimdi</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
