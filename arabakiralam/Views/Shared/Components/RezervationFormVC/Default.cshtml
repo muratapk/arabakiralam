@@ -8,29 +8,29 @@
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-md-6 offset-md-6">
-                        <form class="main_form" asp-action="CarList">
+                        <form class="main_form" asp-action="CarList" asp-controller="CarDetails">
                             <div class="titlepage">
                                 <h2>Kiralık Araç Bulma Formu</h2>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 ">
                                     <select asp-items="@ViewBag.CarCategory">
-                                        <option value="0">Choose car Make</option>
+                                        <option value="0">Araba Kategorisi</option>
                                         
                                     </select>
                                 </div>
                                 <div class="col-md-12">
                                     <select asp-items="@ViewBag.Brand">
-                                        <option value="0">Choose Car Type </option>
+                                        <option value="0">Araba Markası </option>
                                         
                                     </select>
                                 </div>
                                 <div class="col-md-12">
-                                    <input class="contactus" placeholder="Search" type="Search" name="Search">
+                                    <input class="contactus" placeholder="Anahtar Kelime" type="Search" name="Search">
                                 </div>
                                 <div class="col-md-12">
                                     <select asp-items="@ViewBag.Car">
-                                        <option value="0">Price of Rent</option>
+                                        <option value="0">Araba Göre</option>
                                         
                                     </select>
                                 </div>
