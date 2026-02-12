@@ -14,13 +14,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <select asp-items="@ViewBag.CarCategory">
+                                    <select asp-items="@ViewBag.CarCategory" name="CarCategory">
                                         <option value="0">Araba Kategorisi</option>
                                         
                                     </select>
                                 </div>
                                 <div class="col-md-12">
-                                    <select asp-items="@ViewBag.Brand">
+                                    <select asp-items="@ViewBag.Brand" name="Brand">
                                         <option value="0">Araba Markası </option>
                                         
                                     </select>
@@ -29,7 +29,7 @@
                                     <input class="contactus" placeholder="Anahtar Kelime" type="Search" name="Search">
                                 </div>
                                 <div class="col-md-12">
-                                    <select asp-items="@ViewBag.Car">
+                                    <select asp-items="@ViewBag.Car" name="Car">
                                         <option value="0">Araba Göre</option>
                                         
                                     </select>

@@ -1,0 +1,40 @@
+﻿@model List<arabakiralam.Models.Car>
+@{
+    ViewData["Title"] = "CarList";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+@* <h1>CarList</h1>
+@foreach(var item in Model)
+{
+    <h1>@item.PlateNumber</h1>
+}
+ *@
+ <div class="container-fluid">
+     <div class="row mt-5 pt-5">
+         <div class="col-2"></div>
+         <div class="col-10">
+             <table class="table">
+                 <thead class="thead-dark">
+                    <tr>
+                        <td>Resimi</td>
+                        <td>Plakası</td>
+                        <td>Yılı</td>
+                        <td>Günlük Ücreti</td>
+                    </tr>
+                 </thead>
+                 
+                 @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.CarImages.FirstOrDefault()</td>
+                        <td>@item.PlateNumber</td>
+                        <td>@item.Year</td>
+                        <td>@item.DailyPrice</td>
+                    </tr>
+                }
+            </table>
+
+         </div>
+     </div>
+ </div>
