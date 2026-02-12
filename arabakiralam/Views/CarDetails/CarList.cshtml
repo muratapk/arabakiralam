@@ -12,7 +12,11 @@
  *@
  <div class="container-fluid">
      <div class="row mt-5 pt-5">
-         <div class="col-2"></div>
+         <div class="col-2">
+
+            @await Component.InvokeAsync("CarSelectList")
+
+         </div>
          <div class="col-10">
              <table class="table">
                  <thead class="thead-dark">
@@ -27,7 +31,16 @@
                  @foreach(var item in Model)
                 {
                     <tr>
-                        <td>@item.CarImages.FirstOrDefault()</td>
+                        <td>@if(item.CarImages!=null && item.CarImages.Any())
+                            {
+                             <img src="@item.CarImages.First().CarImagesUrl" height="200" width="200"/>    
+                            
+                            }
+                            else
+                            {
+                                <img src="/Images/resim_yok.jpg" height="200" width="200"/>
+                            }
+                        </td>
                         <td>@item.PlateNumber</td>
                         <td>@item.Year</td>
                         <td>@item.DailyPrice</td>
