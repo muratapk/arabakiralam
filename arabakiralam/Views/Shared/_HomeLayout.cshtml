@@ -126,6 +126,8 @@
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <script>
         $(document).ready(function(){
+
+/////////////////////////////////////////////////////
            $(".brand").click(function(){
            // alert('dikkat');
             let deger=$(this).data("id");
@@ -145,6 +147,24 @@
 
            
            });
+////////////////////////////////////////////////////
+  $(".sepet").click(function(){
+      let sepetid=$(this).data("id");
+      alert(sepetid);
+      $.ajax({
+          url:'/CarDetails/AddToCart',
+          type:'Get',
+          data:{id:sepetid},
+          success:function(data){
+              alert(data);
+          },
+          error:function(err){
+              alert('Hata Oluştu');
+          }
+
+           });
+  });
+
 
         });
     </script>
