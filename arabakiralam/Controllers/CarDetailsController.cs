@@ -46,7 +46,7 @@ namespace arabakiralam.Controllers
         public IActionResult BrandList(int id)
         {
             var araba=_db.Cars.Include(x=>x.CarImages).Where(x=>x.BrandId == id).ToList();
-            return View(araba);
+            return PartialView("_BrandListPartial", araba);
         }
     }
 }

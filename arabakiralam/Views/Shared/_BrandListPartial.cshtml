@@ -1,0 +1,33 @@
+﻿@model List<arabakiralam.Models.Car>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <td>Resimi</td>
+            <td>Plakası</td>
+            <td>Yılı</td>
+            <td>Günlük Ücreti</td>
+            <td>Sepet</td>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.CarImages != null && item.CarImages.Any())
+                {
+                    <img src="@item.CarImages.First().CarImagesUrl" height="200" width="200" />
+
+                }
+                else
+                {
+                    <img src="/Images/resim_yok.jpg" height="200" width="200" />
+                }
+            </td>
+            <td>@item.PlateNumber</td>
+            <td>@item.Year</td>
+            <td>@item.DailyPrice</td>
+            <td><a href="#" class="btn btn-warning sepet" data-id="@item.CarId">Sepet</a></td>
+        </tr>
+    }
+</table>
