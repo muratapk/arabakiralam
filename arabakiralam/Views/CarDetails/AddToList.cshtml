@@ -5,7 +5,30 @@
 }
 
 <div class="containter">
-    <div class="col-9"></div>
+    <div class="col-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Araba Resim</td>
+                    <td>Araba Plaka</td>
+                    <td>Günlük Fiyat</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.Model</td>
+                        <td>@item.PlateNumber</td>
+                        <td>@item.DailyPrice</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+    </div>
     <div class="col-3"></div>
 
 </div>
