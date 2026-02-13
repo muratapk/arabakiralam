@@ -129,7 +129,21 @@
            $(".brand").click(function(){
            // alert('dikkat');
             let deger=$(this).data("id");
-            alert(deger);
+            $.ajax({
+                url:'/CarDetails/BrandList',
+                type:'Get',
+                data:{id:deger},
+                success:function(data){
+                    alert(data);
+                },
+                error:function(err){
+                    alert('Veri Çekme Hatası');
+                }
+            
+            
+            });
+
+           
            });
 
         });
