@@ -43,5 +43,10 @@ namespace arabakiralam.Controllers
             }
             return View(cars.ToList());
         }
+        public IActionResult BrandList(int id)
+        {
+            var araba=_db.Cars.Include(x=>x.CarImages).Where(x=>x.BrandId == id).ToList();
+            return View(araba);
+        }
     }
 }
